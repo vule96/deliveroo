@@ -1,9 +1,9 @@
 import CustomHeader from "@/components/CustomHeader";
-import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { Stack, useNavigation } from "expo-router";
 import { TouchableOpacity } from "react-native";
+import Colors from "../constants/Colors";
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
@@ -18,7 +18,9 @@ export default function RootLayoutNav() {
       <Stack>
         <Stack.Screen
           name="index"
-          options={{ header: () => <CustomHeader /> }}
+          options={{
+            header: () => <CustomHeader />,
+          }}
         />
         <Stack.Screen
           name="(modal)/filter"
@@ -48,11 +50,7 @@ export default function RootLayoutNav() {
           name="(modal)/location-search"
           options={{
             presentation: "fullScreenModal",
-            headerTitle: "Search location",
-            headerShadowVisible: false,
-            headerStyle: {
-              backgroundColor: Colors.lightGrey,
-            },
+            headerTitle: "Select location",
             headerLeft: () => (
               <TouchableOpacity
                 onPress={() => {
@@ -68,6 +66,47 @@ export default function RootLayoutNav() {
             ),
           }}
         />
+        <Stack.Screen
+          name="(modal)/dish"
+          options={{
+            presentation: "modal",
+            headerTitle: "",
+            headerTransparent: true,
+
+            headerLeft: () => (
+              <TouchableOpacity
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: 20,
+                  padding: 6,
+                }}
+                onPress={() => {
+                  navigation.goBack();
+                }}
+              >
+                <Ionicons
+                  name="close-outline"
+                  size={28}
+                  color={Colors.primary}
+                />
+              </TouchableOpacity>
+            ),
+          }}
+        />
+        {/* <Stack.Screen
+          name="basket"
+          options={{
+            headerTitle: 'Basket',
+            headerLeft: () => (
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.goBack();
+                }}>
+                <Ionicons name="arrow-back" size={28} color={Colors.primary} />
+              </TouchableOpacity>
+            ),
+          }}
+        /> */}
       </Stack>
     </BottomSheetModalProvider>
   );

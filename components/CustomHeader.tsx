@@ -2,7 +2,7 @@ import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { BottomSheetModal } from "@gorhom/bottom-sheet";
 import { Link } from "expo-router";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import {
   Image,
   SafeAreaView,
@@ -29,7 +29,7 @@ const SearchBar = () => (
           placeholder="Restaurants, groceries, dishes"
         />
       </View>
-      <Link href={"/"} asChild>
+      <Link href={"/(modal)/filter"} asChild>
         <TouchableOpacity style={styles.optionButton}>
           <Ionicons name="options-outline" size={20} color={Colors.primary} />
         </TouchableOpacity>
